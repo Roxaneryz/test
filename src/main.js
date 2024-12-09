@@ -1,24 +1,41 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+const { default: iziToast } = require("izitoast");
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const formElem = document.querySelector("form");
+const inputElem = formElem.elements.numberInput;
+const btn = formElem.document.querySelector("btn");
 
-setupCounter(document.querySelector('#counter'))
+const value = perseInt(number.value.trim(), 10);
+
+numberInput.addEventListener("input", () => {
+  value;
+
+  if (value > 10) {
+    btn.disabled = false;
+  } else {
+    btn.disable = true;
+  }
+});
+
+formElem.addEventListener("submit", function (ev) {
+  ev.preventDefault();
+  value;
+  if (value <= 10) {
+    iziToast.error({
+      title: "Error",
+      message: "Please enter a number bigger than 10.",
+      position: "topCenter",
+      backgroundColor: "#e74c3c",
+      color: "#fff",
+      timeout: 3000,
+    });
+    return;
+  }
+
+  const formData = {
+    number: value,
+  };
+
+  console.log(formData);
+  this.reset();
+  btn.disable = true;
+});
