@@ -1,41 +1,33 @@
-const { default: iziToast } = require("izitoast");
 
 const formElem = document.querySelector("form");
 const inputElem = formElem.elements.numberInput;
-const btn = formElem.document.querySelector("btn");
+const btn = formElem.querySelector("button");
 
-const value = perseInt(number.value.trim(), 10);
 
-numberInput.addEventListener("input", () => {
-  value;
+inputElem.addEventListener("input", () => {
+  const value = parseInt(inputElem.value.trim(), 10);
 
   if (value > 10) {
     btn.disabled = false;
   } else {
-    btn.disable = true;
+    btn.disabled = true;
   }
 });
 
 formElem.addEventListener("submit", function (ev) {
   ev.preventDefault();
-  value;
-  if (value <= 10) {
-    iziToast.error({
-      title: "Error",
-      message: "Please enter a number bigger than 10.",
-      position: "topCenter",
-      backgroundColor: "#e74c3c",
-      color: "#fff",
-      timeout: 3000,
-    });
-    return;
-  }
+  const value = parseInt(inputElem.value.trim(), 10);
+
+  //  if (isNaN(value) || value <= 10) {
+  //    alert("Please enter a number bigger than 10.");
+  //    return;
+  //  }
 
   const formData = {
     number: value,
   };
 
   console.log(formData);
-  this.reset();
-  btn.disable = true;
+  formElem.reset();
+  btn.disabled = true;
 });
